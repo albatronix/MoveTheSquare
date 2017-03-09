@@ -16,8 +16,9 @@ import edu.ycp.cs320.movethesquare.controllers.GameController;
 import edu.ycp.cs320.movethesquare.model.Game;
 import edu.ycp.cs320.movethesquare.model.Square;
 
+
 public class GameView extends JPanel {
-	private static final Color MIDNIGHT_BLUE = new Color(25, 25, 112);
+	private static final Color GOLD = new Color(157, 142, 0);
 	
 	private Game model;
 	private GameController controller;
@@ -26,11 +27,11 @@ public class GameView extends JPanel {
 	public GameView(Game model) {
 		this.model = model;
 		setPreferredSize(new Dimension((int) model.getWidth(), (int)model.getHeight()));
-		setBackground(MIDNIGHT_BLUE);
+		setBackground(GOLD);
 
 		// djh2-KEC119-21: changed from 30 to 45
 		// djh2-YCPlaptop: change from 45 to 100
-		this.timer = new Timer(1000 / 100, new ActionListener() {
+		this.timer = new Timer(1000 / 200, new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -65,12 +66,12 @@ public class GameView extends JPanel {
 		super.paintComponent(g); // paint background
 		
 		// djh2-KEC110-21: changed from GREEN to RED
-		// djh2-YCPlaptop: change from RED to YELLOW
-		g.setColor(Color.YELLOW);
+		// djh2-YCPlaptop: change from RED to YELLOW (now blue)
+		g.setColor(Color.BLUE);
 
 		Square square = model.getSquare();
 		
-		g.fillRect((int) square.getX(), (int) square.getY(), (int) square.getWidth(), (int) square.getHeight());
+		g.fillOval((int) square.getX(), (int) square.getY(), (int) square.getWidth(), (int) square.getHeight());
 	}
 	
 	public static void main(String[] args) {
@@ -82,10 +83,10 @@ public class GameView extends JPanel {
 				model.setHeight(480.0);
 				
 				Square square = new Square();
-				square.setX(300.0);
-				square.setY(220.0);
-				square.setWidth(40.0);
-				square.setHeight(40.0);
+				square.setX(300.0); 
+				square.setY(220.0); 
+				square.setWidth(60.0); //made bigger from 40
+				square.setHeight(60.0); //made bigger from 40
 				model.setSquare(square);
 				
 				GameController controller = new GameController();
